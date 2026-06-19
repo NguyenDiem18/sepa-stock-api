@@ -1,0 +1,133 @@
+openapi: 3.1.0
+info:
+  title: SEPA Stock Analysis API
+  version: 1.0.0
+  description: API for retrieving stock data and SEPA analysis inputs.
+servers:
+  - url: https://YOUR-DEPLOYED-DOMAIN.com
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: http
+      scheme: bearer
+paths:
+  /price/{symbol}:
+    get:
+      operationId: getPrice
+      summary: Get stock price
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: symbol
+          in: path
+          required: true
+          description: Stock symbol, for example FPT, VCB, HPG.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Stock price data.
+          content:
+            application/json:
+              schema:
+                type: object
+  /history/{symbol}:
+    get:
+      operationId: getHistory
+      summary: Get historical candles
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: symbol
+          in: path
+          required: true
+          description: Stock symbol, for example FPT, VCB, HPG.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Historical candle data.
+          content:
+            application/json:
+              schema:
+                type: object
+  /fundamental/{symbol}:
+    get:
+      operationId: getFundamental
+      summary: Get stock fundamentals
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: symbol
+          in: path
+          required: true
+          description: Stock symbol, for example FPT, VCB, HPG.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Fundamental data.
+          content:
+            application/json:
+              schema:
+                type: object
+  /financial-indicators/{symbol}:
+    get:
+      operationId: getFinancialIndicators
+      summary: Get technical and liquidity indicators
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: symbol
+          in: path
+          required: true
+          description: Stock symbol, for example FPT, VCB, HPG.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Technical and liquidity indicators.
+          content:
+            application/json:
+              schema:
+                type: object
+  /market-cap/{symbol}:
+    get:
+      operationId: getMarketCap
+      summary: Get stock market capitalization
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: symbol
+          in: path
+          required: true
+          description: Stock symbol, for example FPT, VCB, HPG.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Market capitalization data.
+          content:
+            application/json:
+              schema:
+                type: object
+  /sepa-score/{symbol}:
+    get:
+      operationId: getSepaScore
+      summary: Get SEPA score
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: symbol
+          in: path
+          required: true
+          description: Stock symbol, for example FPT, VCB, HPG.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: SEPA score with source data.
+          content:
+            application/json:
+              schema:
+                type: object
